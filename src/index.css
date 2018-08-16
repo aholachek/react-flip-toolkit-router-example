@@ -1,0 +1,22 @@
+@import "~sanitize.css";
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Source Code Pro", serif;
+  background-color: #e6e6e6;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+}
+
+button:focus,
+input:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px hsla(0, 0%, 0%, 0.3);
+}
