@@ -6,7 +6,11 @@ import App from "./App"
 import registerServiceWorker from "./registerServiceWorker"
 
 ReactDOM.render(
-  <BrowserRouter>
+  <BrowserRouter
+    getUserConfirmation={(msg, callback) => {
+      setTimeout(() => callback(true), parseInt(msg))
+    }}
+  >
     <App />
   </BrowserRouter>,
   document.getElementById("root")

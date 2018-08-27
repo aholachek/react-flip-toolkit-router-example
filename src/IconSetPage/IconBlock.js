@@ -9,7 +9,7 @@ import iconBaseStyles from "../iconBaseStyles"
 const StyledLink = styled(Link)`
   color: black;
   width: 100%;
-  display:block;
+  display: block;
   height: ${props => (props.isFocused ? "80%" : "100%")};
   &:hover {
     text-decoration: underline;
@@ -35,7 +35,7 @@ const AnimatedIconTitle = styled.h3`
 `
 
 class IconBlock extends PureComponent {
-  static propTypes = {}
+  state = { sampleIcon: true }
   onDelayedAppear = (el, i) => {
     anime({
       targets: el,
@@ -45,12 +45,15 @@ class IconBlock extends PureComponent {
       duration: 250,
       easing: "easeOutSine"
     })
+    this.setState({ sampleIcon: false })
   }
 
   render() {
     const { Icon, isFocused, id, name, set } = this.props
+    const extraProps = {}
+    if (!this.state.sampleIcon) extraProps["data-icon-nonsample"] = true
     return (
-      <IconGridItem key={id} isFocused={isFocused}>
+      <IconGridItem key={id} isFocused={isFocused} {...extraProps}>
         {isFocused && (
           <Flipped flipId={`${set}-detail-title`}>
             <AnimatedIconTitle>

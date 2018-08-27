@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import { Link } from "react-router-dom"
+import { Link, Prompt } from "react-router-dom"
 import PropTypes from "prop-types"
 import styled from "styled-components"
 import { Flipped } from "react-flip-toolkit"
@@ -61,6 +61,7 @@ const StyledLink = styled(Link)`
 `
 
 class IconSetPage extends Component {
+  state = {}
   onComplete = el => {
     anime({
       targets: [...el.querySelectorAll("[data-fade-in]")],
@@ -68,18 +69,41 @@ class IconSetPage extends Component {
       translateY: [15, 0],
       delay: (el, i) => i * 70 + 200,
       easing: "easeOutSine",
+      duration: 250
+    })
+  }
+
+  onStart = el =>
+    [...el.querySelectorAll("[data-fade-in]")].forEach(
+      el => (el.style.opacity = "0")
+    )
+
+  onExit = el => {
+    anime({
+      targets: [
+        ...el.querySelectorAll("[data-fade-in]"),
+        ...el.querySelectorAll("[data-icon-nonsample]")
+      ],
+      opacity: 0,
+      easing: "easeOutSine",
       duration: 350
     })
   }
 
-  onStart = el => {
-    ;[...el.querySelectorAll("[data-fade-in]")].forEach(
-      el => (el.style.opacity = "0")
-    )
+  componentDidUpdate(prevProps) {
+    if (!this.props.match && prevProps.match) {
+      this.onExit(this.el)
+    }
+  }
+
+  setAnimatingOut = () => {
+    this.onExit(this.el)
+    return "350"
   }
 
   render() {
-    const { set, focusedIcon } = this.props.match.params
+    const { params: { set, focusedIcon } = {} } = this.props.match
+
     return (
       <Flipped
         flipId={set}
@@ -87,7 +111,8 @@ class IconSetPage extends Component {
         onComplete={this.onComplete}
         onStart={this.onStart}
       >
-        <Background>
+        <Background innerRef={el => (this.el = el)}>
+          <Prompt message={this.setAnimatingOut} />
           <Flipped inverseFlipId={set}>
             <InvertedDiv>
               <SetContents>
