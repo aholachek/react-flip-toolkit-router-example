@@ -8,6 +8,7 @@ import registerServiceWorker from "./registerServiceWorker"
 ReactDOM.render(
   <BrowserRouter
     getUserConfirmation={(msg, callback) => {
+      if (!msg) return callback(true)
       setTimeout(() => callback(true), parseInt(msg))
     }}
   >

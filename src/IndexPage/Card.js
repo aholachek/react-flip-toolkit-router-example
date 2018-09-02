@@ -38,6 +38,7 @@ const Card = styled.li`
   background-color: white;
   overflow: hidden;
   position: relative;
+  will-change: transform;
   svg {
     will-change: transform;
   }
@@ -47,6 +48,7 @@ const CardContent = styled.div`
   display: flex;
   justify-content: space-between;
   height: 100%;
+  will-change: transform;
   ${CardGrid + '[display="grid"]'} & {
     flex-direction: column;
     padding: 1.5rem;
@@ -122,7 +124,7 @@ class IconSetCard extends PureComponent {
         targets: el.querySelectorAll("[data-fade-in]"),
         opacity: [0, 1],
         translateY: [15, 0],
-        delay: (el, i) => i * 70,
+        delay: (el, i) => i * 70 + 300,
         easing: "easeOutSine",
         duration: 350
       })

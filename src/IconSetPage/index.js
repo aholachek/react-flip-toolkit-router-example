@@ -96,9 +96,11 @@ class IconSetPage extends Component {
     }
   }
 
-  setAnimatingOut = () => {
-    this.onExit(this.el)
-    return "350"
+  setAnimatingOut = ({ pathname }) => {
+    if (pathname === "/") {
+      this.onExit(this.el)
+      return "350"
+    }
   }
 
   render() {
