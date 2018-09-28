@@ -159,6 +159,16 @@ class IconSetCard extends PureComponent {
     this.props.navigate(this.props.setKey)
   }
 
+  shouldFlip = (prev, current) => {
+    const sort1 =
+      current.location.search.match(/sort=([^&]+)/) &&
+      current.location.search.match(/sort=([^&]+)/)[1]
+    const sort2 =
+      prev.location.search.match(/sort=([^&]+)/) &&
+      prev.location.search.match(/sort=([^&]+)/)[1]
+    return sort1 === sort2
+  }
+
   render() {
     const { setKey, icons, iconCount } = this.props
     return (
@@ -169,6 +179,7 @@ class IconSetCard extends PureComponent {
         onComplete={this.onComplete}
         onDelayedAppear={this.onDelayedAppear}
         onExit={this.onExit}
+        shouldInvert={this.shouldFlip}
       >
         <Card onClick={this.navigate}>
           <Flipped inverseFlipId={setKey}>
@@ -177,7 +188,7 @@ class IconSetCard extends PureComponent {
                 {icons.filter(obj => obj.highlighted).map(({ Icon, id }) => {
                   return (
                     <IndexListItem key={id}>
-                      <Flipped flipId={id}>
+                      <Flipped flipId={id} shouldFlip={this.shouldFlip}>
                         <Icon style={iconBaseStyles} />
                       </Flipped>
                     </IndexListItem>
@@ -185,19 +196,31 @@ class IconSetCard extends PureComponent {
                 })}
               </IndexGrid>
               <Description innerRef={el => (this.description = el)}>
-                <Flipped flipId={`${setKey}-title`} translate>
+                <Flipped
+                  flipId={`${setKey}-title`}
+                  translate
+                  shouldFlip={this.shouldFlip}
+                >
                   <CardHeader data-fade-in>
                     {setKey[0].toUpperCase() + setKey.slice(1)} Icons
                   </CardHeader>
                 </Flipped>
                 <ListFlex>
                   <div>
-                    <Flipped flipId={`${setKey}-count`} translate>
+                    <Flipped
+                      flipId={`${setKey}-count`}
+                      translate
+                      shouldFlip={this.shouldFlip}
+                    >
                       <IconCount data-fade-in>{iconCount} icons</IconCount>
                     </Flipped>
                   </div>
                   <div>
-                    <Flipped flipId={`${setKey}-price`} translate>
+                    <Flipped
+                      flipId={`${setKey}-price`}
+                      translate
+                      shouldFlip={this.shouldFlip}
+                    >
                       <Price data-fade-in>${iconCount / 2}</Price>
                     </Flipped>
                   </div>

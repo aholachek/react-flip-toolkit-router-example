@@ -42,6 +42,10 @@ class App extends Component {
     return (
       <Flipper
         flipKey={this.props.location.pathname + this.props.location.search}
+        decisionData={{
+          location: this.props.location,
+          search: this.props.search
+        }}
       >
         <Header>
           <FlexContents>
