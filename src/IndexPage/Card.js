@@ -109,11 +109,16 @@ class IconSetCard extends PureComponent {
     iconCount: PropTypes.number
   }
 
-  onStart = el => {
-    ;[...el.querySelectorAll("[data-fade-in]")].forEach(
-      el => (el.style.opacity = "0")
-    )
-    el.style.zIndex = "5"
+  onStart = (el, prevLocation, currentLocation) => {
+    if (
+      prevLocation.location.pathname === "/" &&
+      currentLocation.location.pathname === "/"
+    ) {
+      ;[...el.querySelectorAll("[data-fade-in]")].forEach(
+        el => (el.style.opacity = "0")
+      )
+      el.style.zIndex = "5"
+    }
   }
 
   onComplete = (el, prevLocation, currentLocation) => {
