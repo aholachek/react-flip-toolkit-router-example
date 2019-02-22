@@ -1,7 +1,5 @@
 import React, { Component } from "react"
-import PropTypes from "prop-types"
-
-import { Route, Link } from "react-router-dom"
+import { Route, withRouter } from "react-router-dom"
 import qs from "qs"
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
@@ -135,7 +133,7 @@ class IndexPage extends Component {
           ) : (
             <CardGrid
               display={queryParamState.display}
-              innerRef={el => (this.cardGrid = el)}
+              ref={el => (this.cardGrid = el)}
             >
               {visibleIconSets.map(set => {
                 if (set === focusedSet) return <li key={set} />
@@ -158,4 +156,4 @@ class IndexPage extends Component {
   }
 }
 
-export default IndexPage
+export default withRouter(IndexPage)

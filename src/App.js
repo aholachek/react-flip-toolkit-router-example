@@ -1,6 +1,7 @@
-import React, { Component } from "react"
-import { Route, withRouter } from "react-router"
-import { Link } from "react-router-dom"
+import React from "react"
+import { Router } from "react-router"
+import { Route, Link } from "react-router-dom"
+import createBrowserHistory from "history/createBrowserHistory"
 import styled from "styled-components"
 import IndexPage from "./IndexPage"
 import { Contents } from "./BaseComponents"
@@ -28,7 +29,7 @@ const Header = styled.header`
   }
 `
 
-const FlexContents = Contents.extend`
+const FlexContents = styled(Contents)`
   display: flex;
   justify-content: space-between;
 `
@@ -37,35 +38,55 @@ const StyledLink = styled.a`
   text-decoration: underline;
 `
 
-class App extends Component {
-  render() {
-    return (
-      <Flipper
-        flipKey={this.props.location.pathname + this.props.location.search}
-        decisionData={{
-          location: this.props.location,
-          search: this.props.search
-        }}
-      >
-        <Header>
-          <FlexContents>
-            <div>
-              <Link to="/">
-                <WorldIcon style={{ width: "20px", marginRight: ".5rem" }} />
-                <h1> Icon Demo App</h1>
-              </Link>
-            </div>
-            <div>
-              <StyledLink href="https://github.com/aholachek/react-flip-toolkit">
-                React-Flip-Toolkit
-              </StyledLink>
-            </div>
-          </FlexContents>
-        </Header>
-        <Route path="/" component={IndexPage} />
-      </Flipper>
-    )
+const history = createBrowserHistory()
+
+const cachedPush = history.push
+
+// override history.push method to allow to exit animations and delayed FLIP
+history.push = ({ state: { animate, ...restState } = {}, ...locationData }) => {
+  const passThroughData = { state: restState, ...locationData }
+  if (animate) {
+    animate().then(() => cachedPush(passThroughData))
+  } else {
+    cachedPush(passThroughData)
   }
 }
 
-export default withRouter(App)
+const App = () => (
+  <Router history={history}>
+    <Route
+      render={({ location, search }) => {
+        return (
+          <Flipper
+            flipKey={location}
+            decisionData={{
+              location,
+              search
+            }}
+          >
+            <Header>
+              <FlexContents>
+                <div>
+                  <Link to="/">
+                    <WorldIcon
+                      style={{ width: "20px", marginRight: ".5rem" }}
+                    />
+                    <h1> Icon Demo App</h1>
+                  </Link>
+                </div>
+                <div>
+                  <StyledLink href="https://github.com/aholachek/react-flip-toolkit">
+                    React-Flip-Toolkit
+                  </StyledLink>
+                </div>
+              </FlexContents>
+            </Header>
+            <IndexPage />
+          </Flipper>
+        )
+      }}
+    />
+  </Router>
+)
+
+export default App

@@ -1,7 +1,6 @@
 import React, { PureComponent } from "react"
-import PropTypes from "prop-types"
 import { Link } from "react-router-dom"
-import styled, { keyframes } from "styled-components"
+import styled from "styled-components"
 import { Flipped } from "react-flip-toolkit"
 import anime from "animejs"
 import iconBaseStyles from "../iconBaseStyles"
@@ -36,7 +35,7 @@ const AnimatedIconTitle = styled.h3`
 
 class IconBlock extends PureComponent {
   state = { sampleIcon: true }
-  onDelayedAppear = (el, i) => {
+  onAppear = (el, i) => {
     anime({
       targets: el,
       delay: 250 + i * 30,
@@ -67,7 +66,7 @@ class IconBlock extends PureComponent {
           to={`/${set}/${isFocused ? "" : name}`}
           isFocused={isFocused}
         >
-          <Flipped flipId={id} onDelayedAppear={this.onDelayedAppear}>
+          <Flipped flipId={id} onAppear={this.onAppear}>
             <Icon style={{ ...iconBaseStyles }} />
           </Flipped>
         </StyledLink>

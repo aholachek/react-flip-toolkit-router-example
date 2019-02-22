@@ -9,7 +9,7 @@ import iconBaseStyles from "../iconBaseStyles"
 
 // using CSS inheritance here to allow the use of PureComponents
 // for better performance
-const IndexGrid = BaseGridList.extend`
+const IndexGrid = styled(BaseGridList)`
   width: 100%;
   grid-auto-rows: 3rem;
   ${CardGrid + '[display="grid"]'} & {
@@ -109,17 +109,18 @@ class IconSetCard extends PureComponent {
     iconCount: PropTypes.number
   }
 
-  onStart = (el, componentId) => {
-    if (componentId === "setPage") {
-      ;[...el.querySelectorAll("[data-fade-in]")].forEach(
-        el => (el.style.opacity = "0")
-      )
-      el.style.zIndex = "5"
-    }
+  onStart = el => {
+    ;[...el.querySelectorAll("[data-fade-in]")].forEach(
+      el => (el.style.opacity = "0")
+    )
+    el.style.zIndex = "5"
   }
 
-  onComplete = (el, componentId) => {
-    if (componentId === "setPage") {
+  onComplete = (el, prevLocation, currentLocation) => {
+    if (
+      currentLocation.location.pathname === "/" &&
+      prevLocation.location.pathname.match(this.props.setKey)
+    ) {
       anime({
         targets: el.querySelectorAll("[data-fade-in]"),
         opacity: [0, 1],
@@ -195,7 +196,7 @@ class IconSetCard extends PureComponent {
                   )
                 })}
               </IndexGrid>
-              <Description innerRef={el => (this.description = el)}>
+              <Description ref={el => (this.description = el)}>
                 <Flipped
                   flipId={`${setKey}-title`}
                   translate
