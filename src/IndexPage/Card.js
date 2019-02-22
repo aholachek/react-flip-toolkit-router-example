@@ -181,7 +181,7 @@ class IconSetCard extends PureComponent {
       <Flipped
         flipId={setKey}
         stagger
-        onStart={this.onStart}
+        onStartImmediate={this.onStart}
         onComplete={this.onComplete}
         onDelayedAppear={this.onDelayedAppear}
         onExit={this.onExit}

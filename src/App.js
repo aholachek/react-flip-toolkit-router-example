@@ -15,7 +15,7 @@ const Header = styled.header`
   z-index: 1;
   position: relative;
   background-color: #e6e6e6;
-  z-index: 3;
+  z-index: 10;
   a {
     color: black;
     &:hover {
