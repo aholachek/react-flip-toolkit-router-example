@@ -111,7 +111,7 @@ class IconSetCard extends PureComponent {
 
   onStart = (el, prevLocation, currentLocation) => {
     if (
-      prevLocation.location.pathname === "/" &&
+      prevLocation.location.pathname.match(this.props.setKey) &&
       currentLocation.location.pathname === "/"
     ) {
       ;[...el.querySelectorAll("[data-fade-in]")].forEach(
