@@ -5900,12 +5900,11 @@ react-error-overlay@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-4.0.0.tgz#d198408a85b4070937a98667f500c832f86bd5d4"
 
-react-flip-toolkit@6.5.0:
-  version "6.5.0"
-  resolved "https://registry.yarnpkg.com/react-flip-toolkit/-/react-flip-toolkit-6.5.0.tgz#6bfbdc5ee6eb1070b3849f9b6516e47b700ec305"
-  integrity sha512-SOQgN6OoqziwG/fsxDynSwKqUxHWqnF0UIrltrnJNBc7ghO/jTnXT2FkoohKpfFivPCHyde5PGQjzIGd03fRmA==
+react-flip-toolkit@6.5.7:
+  version "6.5.7"
+  resolved "https://registry.yarnpkg.com/react-flip-toolkit/-/react-flip-toolkit-6.5.7.tgz#1ddc1479d64113f859d1f6ab02ed0cc33d7c1778"
+  integrity sha512-7v528bWuZhHwyitTr5I8XB1csFK90wPrRiYuNrSYyG1sFY2U/fD552Go3EIqs4wZ9iAcZiR0zfoZ+8YQICfjPw==
   dependencies:
-    prop-types "^15.6.2"
     rematrix "0.2.2"
 
 react-is@^16.6.0:

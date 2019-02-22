@@ -43,12 +43,17 @@ const history = createBrowserHistory()
 const cachedPush = history.push
 
 // override history.push method to allow to exit animations and delayed FLIP
-history.push = ({ state: { animate, ...restState } = {}, ...locationData }) => {
-  const passThroughData = { state: restState, ...locationData }
-  if (animate) {
-    animate().then(() => cachedPush(passThroughData))
+history.push = args => {
+  if (typeof args === "string") {
+    return cachedPush(args)
+  }
+  if (args && args.state && args.state.animate) {
+    args.state.animate().then(() => {
+      delete args.state.animate
+      cachedPush(args)
+    })
   } else {
-    cachedPush(passThroughData)
+    cachedPush(args)
   }
 }
 
