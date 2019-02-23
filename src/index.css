@@ -5,6 +5,7 @@ body {
   padding: 0;
   font-family: "Source Code Pro", serif;
   background-color: #e6e6e6;
+  position: relative;
 }
 
 button {

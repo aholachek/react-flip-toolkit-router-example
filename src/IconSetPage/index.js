@@ -21,22 +21,18 @@ const IconSetGrid = styled.ul`
   grid-auto-flow: dense;
 `
 
-const Background = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  background-color: white;
-  z-index: 2;
+const InverseContainer = styled.div`
 `
 
-const InvertedDiv = styled.div`
-  position: fixed;
+const Background = styled.div`
+  position: absolute;
   top: 0;
   left: 0;
   bottom: 0;
   right: 0;
+  min-height: 100vh;
+  background-color: white;
+  z-index: 2;
 `
 
 const SetContents = styled(Contents)`
@@ -60,6 +56,8 @@ const StyledLink = styled(Link)`
 `
 
 const onComplete = el => {
+  // prevent scroll weirdness
+  el.firstElementChild.style.backgroundColor = '#fff'
   anime({
     targets: [...el.querySelectorAll("[data-fade-in]")],
     opacity: [0, 1],
@@ -92,7 +90,7 @@ const onExit = el => {
 function IconSetPage({
   match: { params: { set, focusedIcon } = {} },
   location
-}) { 
+}) {
   const elementRef = useRef(null)
   return (
     <Flipped
@@ -103,7 +101,7 @@ function IconSetPage({
     >
       <Background ref={elementRef}>
         <Flipped inverseFlipId={set}>
-          <InvertedDiv>
+          <InverseContainer>
             <SetContents>
               <SetDescription>
                 <div data-fade-in>
@@ -139,7 +137,7 @@ function IconSetPage({
                 })}
               </IconSetGrid>
             </SetContents>
-          </InvertedDiv>
+          </InverseContainer>
         </Flipped>
       </Background>
     </Flipped>
