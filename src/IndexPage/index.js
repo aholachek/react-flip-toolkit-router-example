@@ -15,8 +15,6 @@ import {
   CardGrid,
   Controls,
   Toggle,
-  Input,
-  InputContainer,
   NoResults
 } from "./Components"
 
@@ -77,11 +75,10 @@ class IndexPage extends Component {
     const visibleIconSets = sortByIconCount(
       Object.keys(icons),
       queryParamState.sort
-    ).filter(
-      set =>
-        queryParamState.filter
-          ? set.match(new RegExp("^" + queryParamState.filter))
-          : true
+    ).filter(set =>
+      queryParamState.filter
+        ? set.match(new RegExp("^" + queryParamState.filter))
+        : true
     )
     return (
       <div>
@@ -117,16 +114,6 @@ class IndexPage extends Component {
                 <FontAwesomeIcon icon={faTh} />
               </Toggle>
             </div>
-            <InputContainer>
-              <Input
-                type="text"
-                value={queryParamState.filter}
-                onChange={e =>
-                  this.updateQueryParam({ filter: e.target.value })
-                }
-              />
-              <FontAwesomeIcon icon={faFilter} />
-            </InputContainer>
           </Controls>
           {visibleIconSets.length === 0 ? (
             <NoResults>No Results Found</NoResults>

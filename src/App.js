@@ -1,7 +1,7 @@
 import React from "react"
 import { Router } from "react-router"
 import { Route, Link } from "react-router-dom"
-import createBrowserHistory from "history/createBrowserHistory"
+import { createBrowserHistory } from "history"
 import styled from "styled-components"
 import IndexPage from "./IndexPage"
 import { Contents } from "./BaseComponents"
@@ -14,7 +14,7 @@ const Header = styled.header`
   width: 100%;
   z-index: 1;
   position: relative;
-  background-color: #e6e6e6;
+  background-color: #f1f1f1;
   z-index: 10;
   a {
     color: black;
@@ -57,13 +57,14 @@ history.push = args => {
   }
 }
 
+
 const App = () => (
   <Router history={history}>
     <Route
       render={({ location, search }) => {
         return (
           <Flipper
-            flipKey={location}
+            flipKey={`${location.pathname}-${location.search}`}
             decisionData={{
               location,
               search

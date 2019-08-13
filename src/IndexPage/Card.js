@@ -109,7 +109,7 @@ class IconSetCard extends PureComponent {
     iconCount: PropTypes.number
   }
 
-  onStart = (el, prevLocation, currentLocation) => {
+  onStart = (el, { previous: prevLocation, current: currentLocation }) => {
     if (
       prevLocation.location.pathname.match(this.props.setKey) &&
       currentLocation.location.pathname === "/"
@@ -121,7 +121,7 @@ class IconSetCard extends PureComponent {
     }
   }
 
-  onComplete = (el, prevLocation, currentLocation) => {
+  onComplete = (el, { previous: prevLocation, current: currentLocation }) => {
     if (
       currentLocation.location.pathname === "/" &&
       prevLocation.location.pathname.match(this.props.setKey)
@@ -191,15 +191,17 @@ class IconSetCard extends PureComponent {
           <Flipped inverseFlipId={setKey}>
             <CardContent>
               <IndexGrid>
-                {icons.filter(obj => obj.highlighted).map(({ Icon, id }) => {
-                  return (
-                    <IndexListItem key={id}>
-                      <Flipped flipId={id} shouldFlip={this.shouldFlip}>
-                        <Icon style={iconBaseStyles} />
-                      </Flipped>
-                    </IndexListItem>
-                  )
-                })}
+                {icons
+                  .filter(obj => obj.highlighted)
+                  .map(({ Icon, id }) => {
+                    return (
+                      <IndexListItem key={id}>
+                        <Flipped flipId={id} shouldFlip={this.shouldFlip}>
+                          <Icon style={iconBaseStyles} />
+                        </Flipped>
+                      </IndexListItem>
+                    )
+                  })}
               </IndexGrid>
               <Description ref={el => (this.description = el)}>
                 <Flipped

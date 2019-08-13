@@ -16,7 +16,7 @@ const MenHoodie = props => (
       d="M13 6a1 1 0 0 0-1 1v5a1 1 0 1 0 2 0V7a1 1 0 0 0-1-1zm4 0a1 1 0 0 0-1 1v4a1 1 0 1 0 2 0V7a1 1 0 0 0-1-1z"
       fillRule="evenodd"
       clipRule="evenodd"
-      fill="#e6e6e6"
+      fill="#f1f1f1"
     />
     <path
       d="M22 21c-.375 0-1 .594-1 1 0 .479 1.813 5 3 5v-3c-.594 0-1.573-3-2-3zM8 21c-.428 0-1.406 3-2 3v3c1.188 0 3-4.521 3-5 0-.406-.625-1-1-1z"

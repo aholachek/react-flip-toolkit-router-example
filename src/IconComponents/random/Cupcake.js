@@ -2,7 +2,7 @@ import React from "react";
 
 const Cupcake = props => (
   <svg viewBox="0 0 28 32.001"   {...props}>
-    <ellipse cx={14} cy={16.001} rx={12} ry={5} fill="#e6e6e6" />
+    <ellipse cx={14} cy={16.001} rx={12} ry={5} fill="#f1f1f1" />
     <path
       d="M22 16.001c-4 0-4 1-8 1s-4-1-8-1-6 1-6 3 1.024 2 1.024 2l.976 1h24l1-1s1 0 1-2-2-3-6-3z"
       fill="#fc6"

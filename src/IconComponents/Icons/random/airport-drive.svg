@@ -5,7 +5,7 @@
 	 width="32px" height="32px" viewBox="0 0 32 32" style="enable-background:new 0 0 32 32;" xml:space="preserve">
 <g id="Body_47_">
 	<g>
-		<path style="fill:#E6E6E6;" d="M30,0H2C0.896,0,0,0.895,0,2v28c0,1.104,0.896,2,2,2h28c1.104,0,2-0.896,2-2V2
+		<path style="fill:#f1f1f1;" d="M30,0H2C0.896,0,0,0.895,0,2v28c0,1.104,0.896,2,2,2h28c1.104,0,2-0.896,2-2V2
 			C32,0.895,31.104,0,30,0z"/>
 	</g>
 </g>

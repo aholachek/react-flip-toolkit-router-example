@@ -7,7 +7,7 @@ const Eye = props => (
       fill="#f06eaa"
     />
     <circle cx={13} cy={13} r={13} fill="#ccc" />
-    <circle cx={13} cy={13} r={11} fill="#e6e6e6" />
+    <circle cx={13} cy={13} r={11} fill="#f1f1f1" />
     <circle cx={13} cy={13.001} r={7} fill="#48a0dc" />
     <circle cx={13} cy={13} r={4} fill="#4d4d4d" />
     <circle cx={16} cy={10} r={2} fill="#fff" />

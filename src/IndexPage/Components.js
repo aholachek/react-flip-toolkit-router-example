@@ -45,27 +45,7 @@ export const Toggle = styled.button`
     margin-left: 0.5rem;
   }
   &:hover {
-    background-color: ${props => (props.active ? "black" : "#E6E6E6")};
-  }
-`
-
-export const Input = styled.input`
-  border-radius: 5px;
-  background: transparent;
-
-  border: 1px solid black;
-  height: 2.25rem;
-  padding: 0.5rem;
-`
-
-export const InputContainer = styled.div`
-  position: relative;
-  display: inline-block;
-  svg {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    right: 1rem;
+    background-color: ${props => (props.active ? "black" : "#f1f1f1")};
   }
 `
 
